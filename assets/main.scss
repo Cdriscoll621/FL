@@ -1,0 +1,340 @@
+@import "settings.colors";
+@import 'settings.typography';
+
+/////////
+// VARIABLES //
+
+$break-small: 700px;
+$break-large: 1200px;
+
+$gutter: 1em;
+
+
+/////////
+// MIXINS //
+
+@mixin flexbox
+{
+  display:flex;
+  display:-webkit-box;
+  display:-moz-box;
+  display:-ms-flexbox;
+  display:-webkit-flex;
+
+}
+
+@mixin flex-center
+{
+  display:flex;
+  align-items: center;
+}
+
+
+/////////
+// GENERIC //
+
+
+body {
+  background-color: $color-white;
+  color: $color-dark;
+  margin: 0;
+  font-family: $font-body;
+  font-size: $base-font-size;
+}
+
+a {
+  text-decoration: none;
+}
+
+h6 {
+  letter-spacing: 2px;
+  font-weight: 300;
+  margin-bottom: 10px !important;
+}
+
+i {
+  font-style: normal;
+}
+
+/////////
+// HEADER //
+
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  justify-items: center;
+  align-items: center;
+  background-color: $color-dark-grey;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: .8rem;
+  padding: 0 20px;
+}
+
+@media (min-width: $break-small) {
+  .header {
+    justify-content: flex-end;
+  }
+}
+
+/////////
+
+//// GRID /////
+.grid {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+}
+.textCenter {
+  text-align: center;
+}
+
+.grid-block {
+  flex: 1;
+}
+
+.grid-2 {
+  flex: 0 0 100%;
+}
+
+.grid--col-2 > .grid-block {
+  flex: 0 0 100%;
+}
+
+@media (min-width: 48em) {
+  .grid--col-2 > .grid-block{
+    flex: 1;
+  }
+}
+
+
+// NAVBAR //
+
+nav {
+  margin: 0;
+  max-height: 0;
+  overflow: hidden;
+  clear:both;
+  transition: max-height .3s cubic-bezier(0.63, 0, 0.25, 1);;
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: block;
+  }
+  li {
+    display: block;
+    margin: 0;
+    text-align: center;
+  }
+  ol a {
+    color: $color-dark;
+  }
+  a {
+    color: $color-white;
+    display: block;
+    padding: .4em;
+    &:hover {
+      border-bottom: 3px solid $color-blue;
+    }
+    &:focus {
+      border-bottom: 3px solid $color-blue;
+    }
+  }
+}
+
+.flex {
+  @include flexbox();
+}
+
+/////////
+// MOBILE HAMBURGER MENU //
+
+.hamburger {
+  height: 20px;
+  width: 20px;
+  padding: 20px;
+  justify-content: flex-end;
+  cursor: pointer;
+
+  &:before {
+    content: "";
+    display: block;
+    background-color: $color-white;
+    width: 100%;
+    height: 4px;
+  }
+  &:after {
+    content: "";
+    display: block;
+    background-color: $color-white;
+    width: 100%;
+    height: 4px;
+    margin-top: 4px;
+    box-shadow: 0px 8px 0 $color-white;
+  }
+}
+
+
+@media (min-width: $break-small) {
+  .hamburger {
+    display: none;
+  }
+  nav {
+    background: transparent;
+    border: 0 !important;
+    max-height: none;
+    a {
+      display: inline-block;
+      padding: 15px 1em;
+    }
+    ul {
+      display: inline-block;
+    }
+    li {
+      display: inline-block;
+      a {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+/////////
+// CONTAINER //
+
+.container {
+  @include flexbox();
+  background-color: $color-white;
+  padding: 30px;
+  height: 100%;
+
+  &--grey {
+    background-color: $color-light-grey;
+
+  }
+
+  &--column {
+    @include flexbox();
+    flex-direction: column;
+  }
+
+  &--between {
+    justify-content: space-between;
+  }
+}
+
+.container--gutters {
+  margin-left: -$gutter;
+  .container-block {
+    padding-left: $gutter;
+  }
+}
+
+/////////
+// BREADCRUMBS //
+
+.breadcrumbs {
+  color: $color-grey;
+}
+
+/////////
+// COMPONENTS //
+.icon {
+  color: $color-dark;
+
+  &__search {
+    padding-right: 80px;
+  }
+
+  &--white {
+    color: $color-white;
+  }
+  &--grey {
+    color: $color-grey;
+  }
+}
+/////
+.shirt-img {
+  width: 100%;
+
+  &__icon {
+    border: 1px solid $color-grey;
+    max-width: 50px;
+    min-width: 50px;
+  }
+}
+////
+.btn {
+  background: none;
+  color: $color-blue;
+  border: 1px solid $color-blue;
+  border-radius: 0px;
+  font-size: 16px;
+  padding: 15px 30px;
+  text-decoration: none;
+
+  &--fill {
+    color: $color-white;
+    background-color: $color-blue;
+  }
+}
+////////
+// UTILITIES //
+
+.sizes {
+  max-width: 20px;
+  min-width: 20px;
+  margin: 5px;
+  text-align: center;
+  padding: 10px;
+  background-color: $color-white;
+  &__M {
+    color: $color-grey;
+  }
+}
+
+
+////
+
+.hidden {
+  position: fixed;
+  top: -100%;
+  left: -100%;
+}
+
+////
+
+
+.bold {
+  font-weight: 700;
+}
+
+////
+
+.center {
+ @include flex-center();
+}
+
+////
+
+.grey {
+  color: $color-grey;
+}
+
+
+//////
+
+.spacing-border {
+  border-bottom: 1px solid $color-grey;
+
+  &--margin {
+    margin: 30px 0;
+  }
+}
+
+////////////
+
+
+
